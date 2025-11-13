@@ -78,4 +78,5 @@ public class ClienteController {
         catalogoService.removerIntegracaoCalendarioCliente(id);
         return ResponseEntity.noContent().build();
     }
+
 }
