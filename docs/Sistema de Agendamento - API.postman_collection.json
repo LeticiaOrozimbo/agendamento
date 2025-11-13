@@ -1,0 +1,1488 @@
+{
+	"info": {
+		"_postman_id": "d3a85217-7939-490c-9b5d-6058740ae36d",
+		"name": "Sistema de Agendamento - API",
+		"description": "Coleção completa para testar todos os endpoints do sistema de agendamento de serviços de beleza e bem-estar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39461339",
+		"_collection_link": "https://walyfer.postman.co/workspace/Walyfer~91b4db06-e3b6-4d48-bced-f3a3ddc67c38/collection/39461339-d3a85217-7939-490c-9b5d-6058740ae36d?action=share&source=collection_link&creator=39461339"
+	},
+	"item": [
+		{
+			"name": "1. Estabelecimentos",
+			"item": [
+				{
+					"name": "Criar Estabelecimento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Salão Beleza Mais\",\n    \"descricao\": \"Salão de beleza completo com serviços de cabelo, unha e estética\",\n    \"endereco\": {\n        \"logradouro\": \"Rua das Flores\",\n        \"numero\": \"123\",\n        \"complemento\": \"Sala 1\",\n        \"bairro\": \"Centro\",\n        \"cidade\": \"São Paulo\",\n        \"estado\": \"SP\",\n        \"cep\": \"01234567\"\n    },\n    \"fotos\": [\n        \"https://exemplo.com/foto1.jpg\",\n        \"https://exemplo.com/foto2.jpg\"\n    ],\n    \"horariosFuncionamento\": [\n        {\n            \"diaSemana\": \"MONDAY\",\n            \"horarioAbertura\": \"09:00\",\n            \"horarioFechamento\": \"18:00\"\n        },\n        {\n            \"diaSemana\": \"TUESDAY\",\n            \"horarioAbertura\": \"09:00\",\n            \"horarioFechamento\": \"18:00\"\n        },\n        {\n            \"diaSemana\": \"WEDNESDAY\",\n            \"horarioAbertura\": \"09:00\",\n            \"horarioFechamento\": \"18:00\"\n        },\n        {\n            \"diaSemana\": \"THURSDAY\",\n            \"horarioAbertura\": \"09:00\",\n            \"horarioFechamento\": \"18:00\"\n        },\n        {\n            \"diaSemana\": \"FRIDAY\",\n            \"horarioAbertura\": \"09:00\",\n            \"horarioFechamento\": \"18:00\"\n        },\n        {\n            \"diaSemana\": \"SATURDAY\",\n            \"horarioAbertura\": \"09:00\",\n            \"horarioFechamento\": \"16:00\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/estabelecimentos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"estabelecimentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Estabelecimentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/estabelecimentos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"estabelecimentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Estabelecimento por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/estabelecimentos/268a9107-5184-4ea8-92f7-ba50c9540fbf",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"estabelecimentos",
+								"268a9107-5184-4ea8-92f7-ba50c9540fbf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Avaliar Estabelecimento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "clienteId",
+									"value": "b2fb343c-d27e-48cf-aecb-c3cec1e541f2",
+									"type": "text"
+								},
+								{
+									"key": "estrelas",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "comentario",
+									"value": "Excelente estabelecimento! Atendimento de primeira qualidade e ambiente muito limpo.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/estabelecimentos/268a9107-5184-4ea8-92f7-ba50c9540fbf/avaliacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estabelecimentos",
+								"268a9107-5184-4ea8-92f7-ba50c9540fbf",
+								"avaliacoes"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request POST 'http://localhost:8081/api/estabelecimentos/b6984ffd-adc1-4ede-af6f-955689b2120c/avaliacoes' \\\r\n--header 'Content-Type: application/x-www-form-urlencoded' \\\r\n--data-urlencode 'clienteId=b2fb343c-d27e-48cf-aecb-c3cec1e541f2' \\\r\n--data-urlencode 'estrelas=5' \\\r\n--data-urlencode 'comentario=Excelente estabelecimento! Atendimento de primeira qualidade e ambiente muito limpo.'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca Sem filtro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/estabelecimentos/buscar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/estabelecimentos/buscar'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/estabelecimentos/buscar?nome=salao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "salao"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/estabelecimentos/buscar?nome=salao'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Cidade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/estabelecimentos/buscar?bairro=centro",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "bairro",
+									"value": "centro"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/estabelecimentos/buscar?bairro=centro'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Avaliação Minima",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/estabelecimentos/buscar?avaliacaoMinima=4.0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "avaliacaoMinima",
+									"value": "4.0"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/estabelecimentos/buscar?avaliacaoMinima=4.0'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Busca por Serviço",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/estabelecimentos/buscar?servico=corte",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "servico",
+									"value": "corte"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/estabelecimentos/buscar?servico=corte'\r\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Clientes",
+			"item": [
+				{
+					"name": "Criar Cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Leticia MO\",\n    \"email\": \"leticia@email.com\",\n    \"telefone\": \"11999999999\",\n    \"endereco\": {\n        \"logradouro\": \"Rua A\",\n        \"numero\": \"456\",\n        \"complemento\": \"Apto 101\",\n        \"bairro\": \"Vila B\",\n        \"cidade\": \"São Paulo\",\n        \"estado\": \"SP\",\n        \"cep\": \"12345678\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/clientes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/clientes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Cliente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/clientes/b2fb343c-d27e-48cf-aecb-c3cec1e541f2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"clientes",
+								"b2fb343c-d27e-48cf-aecb-c3cec1e541f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Joyce\",\n    \"email\": \"joyce@email.com\",\n    \"telefone\": \"11888888888\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Nova\",\n        \"numero\": \"789\",\n        \"complemento\": \"Casa\",\n        \"bairro\": \"Vila Nova\",\n        \"cidade\": \"São Paulo\",\n        \"estado\": \"SP\",\n        \"cep\": \"87654321\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/clientes/b2fb343c-d27e-48cf-aecb-c3cec1e541f2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"clientes",
+								"b2fb343c-d27e-48cf-aecb-c3cec1e541f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/clientes/db96b52e-9059-4980-87f3-9545e302708e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes",
+								"db96b52e-9059-4980-87f3-9545e302708e"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request DELETE 'http://localhost:8081/api/clientes/uuid-do-cliente'"
+					},
+					"response": []
+				},
+				{
+					"name": "Bucar Agendamento por Cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/clientes/b2fb343c-d27e-48cf-aecb-c3cec1e541f2/agendamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes",
+								"b2fb343c-d27e-48cf-aecb-c3cec1e541f2",
+								"agendamentos"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/clientes/b2fb343c-d27e-48cf-aecb-c3cec1e541f2/agendamentos'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Integração com Calendario do Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/clientes/b2fb343c-d27e-48cf-aecb-c3cec1e541f2/calendario?email=leticia@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes",
+								"b2fb343c-d27e-48cf-aecb-c3cec1e541f2",
+								"calendario"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "leticia@gmail.com"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location --request POST 'http://localhost:8081/api/clientes/b2fb343c-d27e-48cf-aecb-c3cec1e541f2/calendario?email=cliente@gmail.com'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Remoçao do Calendario do Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/clientes/b2fb343c-d27e-48cf-aecb-c3cec1e541f2/calendario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"clientes",
+								"b2fb343c-d27e-48cf-aecb-c3cec1e541f2",
+								"calendario"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request DELETE 'http://localhost:8081/api/clientes/b2fb343c-d27e-48cf-aecb-c3cec1e541f2/calendario'\r\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Profissionais",
+			"item": [
+				{
+					"name": "Criar Profissional",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Maria Santos\",\n    \"especialidades\": \"Corte feminino, Coloração, Escova\",\n    \"foto\": \"https://exemplo.com/maria.jpg\",\n    \"tarifaBase\": 80.0,\n    \"servicosIds\": [\n        \"8ab95923-54ed-41eb-9db6-1af414160fe2\"\n    ],\n    \"disponibilidade\": [\n        {\n            \"diaSemana\": \"MONDAY\",\n            \"horarioInicio\": \"09:00\",\n            \"horarioFim\": \"17:00\"\n        },\n        {\n            \"diaSemana\": \"TUESDAY\",\n            \"horarioInicio\": \"09:00\",\n            \"horarioFim\": \"17:00\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/profissionais",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"profissionais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Profissionais",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/profissionais",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"profissionais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Profissional por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/profissionais/0920731c-2e9c-488d-a0f3-bea4783d4e32",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"profissionais",
+								"0920731c-2e9c-488d-a0f3-bea4783d4e32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Profissional",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Maria Santos\",\n    \"especialidades\": \"Corte feminino, Coloração, Escova\",\n    \"foto\": \"https://exemplo.com/maria.jpg\",\n    \"tarifaBase\": 80.0,\n    \"servicosIds\": [\n        \"8ab95923-54ed-41eb-9db6-1af414160fe2\"\n    ],\n    \"disponibilidade\": [\n        {\n            \"diaSemana\": \"MONDAY\",\n            \"horarioInicio\": \"09:00\",\n            \"horarioFim\": \"17:00\"\n        },\n        {\n            \"diaSemana\": \"TUESDAY\",\n            \"horarioInicio\": \"09:00\",\n            \"horarioFim\": \"17:00\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/profissionais/0920731c-2e9c-488d-a0f3-bea4783d4e32",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"profissionais",
+								"0920731c-2e9c-488d-a0f3-bea4783d4e32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleter Profissional",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/profissionais/baafcc74-8805-47e7-afd9-420a6d39a40c",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"profissionais",
+								"baafcc74-8805-47e7-afd9-420a6d39a40c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Serviço ao Profissional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/servicos?servicoId=f91a374c-bdb2-4499-825e-64f914aaa1ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"profissionais",
+								"441f94c5-c8fd-4cf5-96b2-66d624d03227",
+								"servicos"
+							],
+							"query": [
+								{
+									"key": "servicoId",
+									"value": "f91a374c-bdb2-4499-825e-64f914aaa1ec"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location --request POST 'http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/servicos?servicoId=f91a374c-bdb2-4499-825e-64f914aaa1ec'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Serviço do Profissional",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/servicos/f91a374c-bdb2-4499-825e-64f914aaa1ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"profissionais",
+								"441f94c5-c8fd-4cf5-96b2-66d624d03227",
+								"servicos",
+								"f91a374c-bdb2-4499-825e-64f914aaa1ec"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request DELETE 'http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/servicos/f91a374c-bdb2-4499-825e-64f914aaa1ec'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Disponibilidade do Profissional",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"dia\": \"MONDAY\",\r\n  \"inicio\": \"09:00\",\r\n  \"fim\": \"17:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/disponibilidade",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"profissionais",
+								"441f94c5-c8fd-4cf5-96b2-66d624d03227",
+								"disponibilidade"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request POST 'http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/disponibilidade' \\\r\n--header 'Content-Type: application/json' \\\r\n--data '{\r\n  \"dia\": \"MONDAY\",\r\n  \"inicio\": \"09:00\",\r\n  \"fim\": \"17:00\"\r\n}'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Avaliar Profissional",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "clienteId",
+									"value": "b2fb343c-d27e-48cf-aecb-c3cec1e541f2",
+									"type": "text"
+								},
+								{
+									"key": "estrelas",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "comentario",
+									"value": "Excelente profissional! Muito habilidoso e atencioso.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/avaliacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"profissionais",
+								"441f94c5-c8fd-4cf5-96b2-66d624d03227",
+								"avaliacoes"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request POST 'http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/avaliacoes' \\\r\n--header 'Content-Type: application/x-www-form-urlencoded' \\\r\n--data-urlencode 'clienteId=b2fb343c-d27e-48cf-aecb-c3cec1e541f2' \\\r\n--data-urlencode 'estrelas=5' \\\r\n--data-urlencode 'comentario=Excelente profissional! Muito habilidoso e atencioso.'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Agendamentos do Profissional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/agendamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"profissionais",
+								"441f94c5-c8fd-4cf5-96b2-66d624d03227",
+								"agendamentos"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/profissionais/441f94c5-c8fd-4cf5-96b2-66d624d03227/agendamentos'\r\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Serviços",
+			"item": [
+				{
+					"name": "Criar Serviço - Manicure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Manicure Completa\",\n    \"descricao\": \"Manicure com esmaltação e cuidados das unhas\",\n    \"categoria\": \"Unhas\",\n    \"preco\": 35.00,\n    \"duracaoMinutos\": 45\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/servicos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servicos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Serviços",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/servicos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servicos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Serviço por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/servicos/f91a374c-bdb2-4499-825e-64f914aaa1ec",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servicos",
+								"f91a374c-bdb2-4499-825e-64f914aaa1ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Serviço",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/servicos/afcdc6f2-8a00-401e-8901-3f2c5ec835fb",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servicos",
+								"afcdc6f2-8a00-401e-8901-3f2c5ec835fb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Serviço",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Corte de Cabelo Premium\",\n    \"descricao\": \"Corte moderno com lavagem e finalização\",\n    \"categoria\": \"Cabelo\",\n    \"preco\": 65.00,\n    \"duracaoMinutos\": 35\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/servicos/f91a374c-bdb2-4499-825e-64f914aaa1ec",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"servicos",
+								"f91a374c-bdb2-4499-825e-64f914aaa1ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Serviço por Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/servicos/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"servicos",
+								"categorias"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/servicos/categorias'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Serviço por Estabelecimento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/servicos/estabelecimento/b6984ffd-adc1-4ede-af6f-955689b2120c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"servicos",
+								"estabelecimento",
+								"b6984ffd-adc1-4ede-af6f-955689b2120c"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/servicos/estabelecimento/b6984ffd-adc1-4ede-af6f-955689b2120c'\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Serviço por Profissional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/servicos/profissional/441f94c5-c8fd-4cf5-96b2-66d624d03227",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"servicos",
+								"profissional",
+								"441f94c5-c8fd-4cf5-96b2-66d624d03227"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/servicos/profissional/441f94c5-c8fd-4cf5-96b2-66d624d03227'\r\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Agendamentos",
+			"item": [
+				{
+					"name": "Criar Agendamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clienteId\": \"827fae44-e8f5-4cf2-a244-07f34e461d00\",\n    \"estabelecimentoId\": \"b6984ffd-adc1-4ede-af6f-955689b2120c\",\n    \"profissionalId\": \"0920731c-2e9c-488d-a0f3-bea4783d4e32\",\n    \"servicoId\": \"f91a374c-bdb2-4499-825e-64f914aaa1ec\",\n    \"inicio\": \"2024-11-17T10:30:00-03:00\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/agendamentos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"agendamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Agendamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/agendamentos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"agendamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Agendamento por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/agendamentos/1821893b-4160-4b5d-9402-2576e74fe142",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"agendamentos",
+								"1821893b-4160-4b5d-9402-2576e74fe142"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar Agendamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/agendamentos/e9f0135e-f8ba-4ae2-a84e-285b7ded4037/cancelar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"agendamentos",
+								"e9f0135e-f8ba-4ae2-a84e-285b7ded4037",
+								"cancelar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmar Agendamento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/agendamentos/134b2ce8-35e7-404b-8150-672c90c3c448/confirmar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"agendamentos",
+								"134b2ce8-35e7-404b-8150-672c90c3c448",
+								"confirmar"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request PATCH 'http://localhost:8081/api/agendamentos/ID_AGENDAMENTO/confirmar'"
+					},
+					"response": []
+				},
+				{
+					"name": "Concluir Agendamento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/agendamentos/134b2ce8-35e7-404b-8150-672c90c3c448/concluir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"agendamentos",
+								"134b2ce8-35e7-404b-8150-672c90c3c448",
+								"concluir"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request PATCH 'http://localhost:8081/api/agendamentos/ID_AGENDAMENTO/confirmar'"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Agendamento por Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/agendamentos/status/CANCELADO",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"agendamentos",
+								"status",
+								"CANCELADO"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Agendamento por Profissional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/agendamentos/profissional/0920731c-2e9c-488d-a0f3-bea4783d4e32",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"agendamentos",
+								"profissional",
+								"0920731c-2e9c-488d-a0f3-bea4783d4e32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Agendamento por Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/agendamentos/cliente/827fae44-e8f5-4cf2-a244-07f34e461d00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"agendamentos",
+								"cliente",
+								"827fae44-e8f5-4cf2-a244-07f34e461d00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Agendamento por Estabelecimento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/agendamentos/cliente/827fae44-e8f5-4cf2-a244-07f34e461d00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"agendamentos",
+								"cliente",
+								"827fae44-e8f5-4cf2-a244-07f34e461d00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reagendar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clienteId\": \"b2fb343c-d27e-48cf-aecb-c3cec1e541f2\",\r\n  \"estabelecimentoId\": \"b6984ffd-adc1-4ede-af6f-955689b2120c\",\r\n  \"profissionalId\": \"441f94c5-c8fd-4cf5-96b2-66d624d03227\",\r\n  \"servicoId\": \"f91a374c-bdb2-4499-825e-64f914aaa1ec\",\r\n  \"inicio\": \"2024-12-20T16:00:00-03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/agendamentos/9efb6d08-7ec6-4344-949f-eee0ba2298d5/reagendar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"agendamentos",
+								"9efb6d08-7ec6-4344-949f-eee0ba2298d5",
+								"reagendar"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request PUT 'http://localhost:8081/api/agendamentos/UUID_DO_AGENDAMENTO/reagendar' \\\r\n--header 'Content-Type: application/json' \\\r\n--data '{\r\n  \"clienteId\": \"b2fb343c-d27e-48cf-aecb-c3cec1e541f2\",\r\n  \"estabelecimentoId\": \"b6984ffd-adc1-4ede-af6f-955689b2120c\",\r\n  \"profissionalId\": \"441f94c5-c8fd-4cf5-96b2-66d624d03227\",\r\n  \"servicoId\": \"f91a374c-bdb2-4499-825e-64f914aaa1ec\",\r\n  \"inicio\": \"2024-12-20T16:00:00-03:00\"\r\n}'\r\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Busca e Filtros",
+			"item": [
+				{
+					"name": "Buscar Estabelecimentos por Nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/estabelecimentos/buscar?nome=amor",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "amor"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Estabelecimentos por Localização",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/estabelecimentos/buscar?cidade=São Paulo&bairro=Centro",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "cidade",
+									"value": "São Paulo"
+								},
+								{
+									"key": "bairro",
+									"value": "Centro"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por Serviço",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/estabelecimentos/buscar?servico=Corte",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "servico",
+									"value": "Corte"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar com Filtro de Preço",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/estabelecimentos/buscar?precoMinimo=30&precoMaximo=80",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "precoMinimo",
+									"value": "30"
+								},
+								{
+									"key": "precoMaximo",
+									"value": "80"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar com Filtro de Avaliação",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/estabelecimentos/buscar?avaliacaoMinima=4.0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"estabelecimentos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "avaliacaoMinima",
+									"value": "4.0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. Notificacoes",
+			"item": [
+				{
+					"name": "Conexão para Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/notificacoes/cliente/b2fb343c-d27e-48cf-aecb-c3cec1e541f2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"notificacoes",
+								"cliente",
+								"b2fb343c-d27e-48cf-aecb-c3cec1e541f2"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/notificacoes/cliente/b2fb343c-d27e-48cf-aecb-c3cec1e541f2'"
+					},
+					"response": []
+				},
+				{
+					"name": "Conexão para Profissionais",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/notificacoes/profissional/441f94c5-c8fd-4cf5-96b2-66d624d03227",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"notificacoes",
+								"profissional",
+								"441f94c5-c8fd-4cf5-96b2-66d624d03227"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/notificacoes/profissional/441f94c5-c8fd-4cf5-96b2-66d624d03227'"
+					},
+					"response": []
+				},
+				{
+					"name": "Conexão para Estabelecimentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/notificacoes/estabelecimento/b6984ffd-adc1-4ede-af6f-955689b2120c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"notificacoes",
+								"estabelecimento",
+								"b6984ffd-adc1-4ede-af6f-955689b2120c"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/notificacoes/estabelecimento/b6984ffd-adc1-4ede-af6f-955689b2120c'"
+					},
+					"response": []
+				},
+				{
+					"name": "Teste Notificações Clientes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/notificacoes/teste/b2fb343c-d27e-48cf-aecb-c3cec1e541f2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"notificacoes",
+								"teste",
+								"b2fb343c-d27e-48cf-aecb-c3cec1e541f2"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request POST 'http://localhost:8081/api/notificacoes/teste/b2fb343c-d27e-48cf-aecb-c3cec1e541f2'"
+					},
+					"response": []
+				},
+				{
+					"name": "Teste Notificações Profissionais",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/notificacoes/teste/profissional/441f94c5-c8fd-4cf5-96b2-66d624d03227",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"notificacoes",
+								"teste",
+								"profissional",
+								"441f94c5-c8fd-4cf5-96b2-66d624d03227"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request POST 'http://localhost:8081/api/notificacoes/teste/profissional/441f94c5-c8fd-4cf5-96b2-66d624d03227'"
+					},
+					"response": []
+				},
+				{
+					"name": "Teste Notificações Estabelecimento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/notificacoes/teste/estabelecimento/b6984ffd-adc1-4ede-af6f-955689b2120c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"notificacoes",
+								"teste",
+								"estabelecimento",
+								"b6984ffd-adc1-4ede-af6f-955689b2120c"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request POST 'http://localhost:8081/api/notificacoes/teste/estabelecimento/b6984ffd-adc1-4ede-af6f-955689b2120c'"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

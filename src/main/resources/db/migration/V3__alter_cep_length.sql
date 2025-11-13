@@ -1,0 +1,3 @@
+ALTER TABLE estabelecimentos
+ALTER COLUMN cep TYPE VARCHAR(9);
+

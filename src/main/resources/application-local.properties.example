@@ -1,0 +1,19 @@
+# EXEMPLO - Arquivo de Configuração Local
+# Copie este arquivo para application-local.properties e preencha com suas credenciais
+
+# Database Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/agendamento
+spring.datasource.username=SEU_USUARIO_POSTGRES
+spring.datasource.password=SUA_SENHA_POSTGRES
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# Perfil ativo
+spring.profiles.active=local
+
+# Email Configuration (opcional para desenvolvimento)
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=seu.email@gmail.com
+spring.mail.password=sua_senha_de_aplicativo
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
