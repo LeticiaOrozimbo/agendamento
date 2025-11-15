@@ -1,5 +1,5 @@
 # Dockerfile para Sistema de Agendamento
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-alpine
 
 # Definir diretório de trabalho
 WORKDIR /app
