@@ -1,0 +1,53 @@
+# Ignorar arquivos desnecessários no build Docker
+
+# Diretórios de build e cache
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Documentação
+*.md
+docs/
+
+# Testes
+**/test-results/
+**/coverage/
+
+# Arquivos de configuração local
+application-local.properties
+application-dev.properties
+
+# Performance tests
+performance-tests/
+
+# Database
+*.sql
+*.db
