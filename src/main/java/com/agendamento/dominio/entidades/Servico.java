@@ -63,7 +63,6 @@ public class Servico {
         }
     }
 
-    // Setters
     public void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é obrigatório");
@@ -96,7 +95,6 @@ public class Servico {
         this.duracaoMinutos = duracaoMinutos;
     }
 
-    // Método de conveniência para compatibilidade
     public Duration getDuracao() {
         return Duration.ofMinutes(this.duracaoMinutos);
     }

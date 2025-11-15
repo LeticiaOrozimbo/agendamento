@@ -17,7 +17,6 @@ public class CriarEstabelecimentoUseCase {
 
     @Transactional
     public Estabelecimento executar(EstabelecimentoDTO dto) {
-        // Criar endereço
         var endereco = Endereco.criar(
             dto.endereco().logradouro(),
             dto.endereco().numero(),
@@ -28,22 +27,18 @@ public class CriarEstabelecimentoUseCase {
             dto.endereco().cep()
         );
 
-        // Criar estabelecimento
         var estabelecimento = Estabelecimento.criar(dto.nome(), endereco);
 
-        // Configurar propriedades opcionais
         if (dto.descricao() != null) {
             estabelecimento.setDescricao(dto.descricao());
         }
 
-        // Adicionar fotos se fornecidas
         if (dto.fotos() != null) {
             for (var foto : dto.fotos()) {
                 estabelecimento.adicionarFoto(foto);
             }
         }
 
-        // Definir horários de funcionamento se fornecidos
         if (dto.horariosFuncionamento() != null) {
             for (var horario : dto.horariosFuncionamento()) {
                 estabelecimento.definirHorario(

@@ -58,7 +58,6 @@ public class Profissional {
     private String email;
 
     protected Profissional() {
-        // Required by JPA
         this.id = null;
         this.servicosIds = new HashSet<>();
         this.disponibilidade = new HashSet<>();
@@ -133,7 +132,6 @@ public class Profissional {
         this.emailCalendario = null;
     }
 
-    // Getters
     public UUID getId() { return id; }
     public String getNome() { return nome; }
     public String getEspecialidades() { return especialidades; }
@@ -151,7 +149,6 @@ public class Profissional {
     public String getEmail() { return emailCalendario != null ? emailCalendario : email; }
     public boolean getCalendarioIntegrado() { return calendarioIntegrado; }
 
-    // Setters
     public void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é obrigatório");
@@ -194,7 +191,6 @@ public class Profissional {
         private LocalTime fim;
 
         protected DisponibilidadeHorario() {
-            // Required by JPA
         }
 
         public DisponibilidadeHorario(DayOfWeek diaSemana, LocalTime inicio, LocalTime fim) {

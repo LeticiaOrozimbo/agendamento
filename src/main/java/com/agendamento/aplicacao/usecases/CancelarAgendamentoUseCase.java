@@ -32,20 +32,15 @@ public class CancelarAgendamentoUseCase {
         var agendamento = agendamentoRepositorio.buscarPorId(agendamentoId)
             .orElseThrow(() -> new RegraNegocioExcecao("Agendamento não encontrado"));
 
-        // Aplicar regra de negócio através da entidade
         agendamento.cancelar();
 
-        // Persistir alteração
         agendamentoRepositorio.salvar(agendamento);
 
         try {
-            // Remover do calendário
             calendarioService.removerEvento(agendamento);
 
-            // Cancelar lembretes
             notificacaoService.cancelarLembretes(agendamento.getId());
 
-            // Enviar notificação push
             notificacaoPushService.notificarCancelamento(agendamento);
         } catch (Exception e) {
             System.err.println("Erro ao processar cancelamento: " + e.getMessage());

@@ -64,7 +64,6 @@ public class Estabelecimento {
     private List<Avaliacao> avaliacoes = new ArrayList<>();
 
     protected Estabelecimento() {
-        // Required by JPA
         this.id = null;
         this.fotos = new ArrayList<>();
         this.horariosFuncionamento = new HashMap<>();
@@ -164,7 +163,6 @@ public class Estabelecimento {
         }
     }
 
-    // Getters
     public UUID getId() { return id; }
     public String getNome() { return nome; }
     public Endereco getEndereco() { return endereco; }
@@ -178,7 +176,6 @@ public class Estabelecimento {
     public BigDecimal getAvaliacaoMedia() { return avaliacaoMedia; }
     public List<Avaliacao> getAvaliacoes() { return Collections.unmodifiableList(avaliacoes); }
 
-    // Setters
     public void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é obrigatório");
@@ -206,7 +203,6 @@ public class Estabelecimento {
         private LocalTime fechamento;
 
         protected HorarioFuncionamento() {
-            // Required by JPA
         }
 
         public HorarioFuncionamento(LocalTime abertura, LocalTime fechamento) {

@@ -24,13 +24,10 @@ public class ConfirmarAgendamentoUseCase {
         var agendamento = agendamentoRepositorio.buscarPorId(agendamentoId)
             .orElseThrow(() -> new RegraNegocioExcecao("Agendamento não encontrado"));
 
-        // Aplicar regra de negócio através da entidade
         agendamento.confirmar();
 
-        // Persistir alteração
         agendamentoRepositorio.salvar(agendamento);
 
-        // Enviar notificação push
         try {
             notificacaoPushService.notificarCliente(agendamento.getClienteId(),
                 "Seu agendamento foi confirmado!");

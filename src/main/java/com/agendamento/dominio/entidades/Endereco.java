@@ -49,7 +49,6 @@ public class Endereco {
         if (cep == null || !cep.matches("\\d{5}-\\d{3}|\\d{8}")) {
             throw new IllegalArgumentException("CEP deve estar no formato 00000-000 ou 00000000");
         }
-        // Normaliza o CEP para o formato com hífen se não estiver
         if (cep.matches("\\d{8}")) {
             this.cep = cep.substring(0, 5) + "-" + cep.substring(5);
         } else {

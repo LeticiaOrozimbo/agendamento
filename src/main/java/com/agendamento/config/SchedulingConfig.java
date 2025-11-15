@@ -16,7 +16,6 @@ public class SchedulingConfig {
         scheduler.setPoolSize(10);
         scheduler.setThreadNamePrefix("agendamento-scheduler-");
         scheduler.setErrorHandler(t -> {
-            // Log any errors that occur during task execution
             System.err.println("Erro ao executar tarefa agendada: " + t.getMessage());
         });
         scheduler.initialize();

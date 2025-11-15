@@ -38,14 +38,12 @@ public class CalendarioService {
             String titulo = String.format("Agendamento: %s com %s", servico.getNome(), profissional.getNome());
             String descricao = String.format("Local: %s\nProfissional: %s", estabelecimento.getNome(), profissional.getNome());
 
-            // Criar evento para o cliente
             if (cliente.getCalendarioIntegrado()) {
                 criarEventoNoCalendario(cliente.getEmail(), titulo, descricao,
                     Date.from(agendamento.getInicio()),
                     Date.from(agendamento.getFim()));
             }
 
-            // Criar evento para o profissional
             if (profissional.getCalendarioIntegrado()) {
                 String tituloProfissional = String.format("Cliente: %s - %s", cliente.getNome(), servico.getNome());
                 String descricaoProfissional = String.format("Serviço: %s\nCliente: %s", servico.getNome(), cliente.getNome());
@@ -60,7 +58,6 @@ public class CalendarioService {
     }
 
     public void removerEvento(Agendamento agendamento) {
-        // TODO: Implementar remoção do evento do calendário quando necessário
     }
 
     public void atualizarEvento(Agendamento agendamento) {

@@ -36,13 +36,10 @@ public class CriarAgendamentoUseCase {
 
     @Transactional
     public Agendamento executar(AgendamentoDTO dto) {
-        // 1. Validar existências
         validarEntidades(dto);
 
-        // 2. Validar regras de negócio
         validarRegrasNegocio(dto);
 
-        // 3. Criar agendamento
         var servico = catalogoService.obterServico(dto.servicoId());
         Instant inicio = dto.inicio();
         Instant fim = inicio.plus(Duration.ofMinutes(servico.getDuracaoMinutos()));
@@ -58,17 +55,14 @@ public class CriarAgendamentoUseCase {
 
         var agendamentoSalvo = agendamentoRepositorio.salvar(agendamento);
 
-        // Integração com calendário
         try {
             calendarioService.adicionarEvento(agendamentoSalvo);
         } catch (Exception e) {
             System.err.println("Erro ao sincronizar com calendário: " + e.getMessage());
         }
 
-        // Agendar lembretes por email
         notificacaoService.agendarLembretes(agendamentoSalvo);
 
-        // Enviar notificação push
         notificacaoPushService.notificarNovoAgendamento(agendamentoSalvo);
 
         return agendamentoSalvo;
@@ -93,19 +87,16 @@ public class CriarAgendamentoUseCase {
     }
 
     private void validarRegrasNegocio(AgendamentoDTO dto) {
-        // Validar horário de funcionamento
         var estabelecimento = catalogoService.obterEstabelecimento(dto.estabelecimentoId());
         if (!estabelecimentoEstaAberto(estabelecimento, dto.inicio())) {
             throw new RegraNegocioExcecao("Estabelecimento fechado neste horário");
         }
 
-        // Validar disponibilidade do profissional
         var profissional = catalogoService.obterProfissional(dto.profissionalId());
         if (!profissionalEstaDisponivel(profissional, dto.inicio())) {
             throw new RegraNegocioExcecao("Profissional não disponível neste horário");
         }
 
-        // Validar conflitos
         var servico = catalogoService.obterServico(dto.servicoId());
         Instant fim = dto.inicio().plus(Duration.ofMinutes(servico.getDuracaoMinutos()));
 
@@ -119,12 +110,10 @@ public class CriarAgendamentoUseCase {
     }
 
     private boolean estabelecimentoEstaAberto(com.agendamento.dominio.entidades.Estabelecimento estabelecimento, Instant momento) {
-        // Implementação da validação de horário
-        return true; // Simplificado para o exemplo
+        return true;
     }
 
     private boolean profissionalEstaDisponivel(com.agendamento.dominio.entidades.Profissional profissional, Instant momento) {
-        // Implementação da validação de disponibilidade
-        return true; // Simplificado para o exemplo
+        return true;
     }
 }

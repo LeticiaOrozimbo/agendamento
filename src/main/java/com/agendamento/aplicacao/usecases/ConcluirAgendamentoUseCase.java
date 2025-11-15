@@ -20,10 +20,8 @@ public class ConcluirAgendamentoUseCase {
         var agendamento = agendamentoRepositorio.buscarPorId(agendamentoId)
             .orElseThrow(() -> new RegraNegocioExcecao("Agendamento não encontrado"));
 
-        // Aplicar regra de negócio através da entidade
         agendamento.concluir();
 
-        // Persistir alteração
         agendamentoRepositorio.salvar(agendamento);
     }
 }

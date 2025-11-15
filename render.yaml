@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: sistema-agendamento
+    runtime: java
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -Xms256m -Xmx512m -jar target/agendamento-1.0.0.jar
+    plan: free
+    region: oregon
+    branch: main
+    healthCheckPath: /actuator/health
+    env: production
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: agendamento-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: agendamento-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: agendamento-db
+          property: password
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: validate
+      - key: SPRING_JPA_SHOW_SQL
+        value: false
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: org.hibernate.dialect.PostgreSQLDialect
+      - key: SPRING_FLYWAY_ENABLED
+        value: true
+      - key: SPRING_FLYWAY_BASELINE_ON_MIGRATE
+        value: true
+      - key: PORT
+        value: 8080
+
+databases:
+  - name: agendamento-db
+    databaseName: agendamento
+    user: agendamento_user
+    plan: free
+    region: oregon

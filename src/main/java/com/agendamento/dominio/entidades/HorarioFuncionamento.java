@@ -13,7 +13,6 @@ public class HorarioFuncionamento {
     private LocalTime fechamento;
 
     protected HorarioFuncionamento() {
-        // Required by JPA
     }
 
     public HorarioFuncionamento(LocalTime abertura, LocalTime fechamento) {

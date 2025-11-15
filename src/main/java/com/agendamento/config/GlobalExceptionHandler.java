@@ -15,7 +15,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleRegraNegocioExcecao(RegraNegocioExcecao e) {
         String message = e.getMessage();
 
-        // Mapear mensagens específicas para códigos de status apropriados
         if (message.contains("não encontrado") || message.contains("não existe")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of("error", "Not Found", "message", message));
@@ -26,7 +25,6 @@ public class GlobalExceptionHandler {
                 .body(Map.of("error", "Bad Request", "message", message));
         }
 
-        // Para outras exceções de regra de negócio
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body(Map.of("error", "Bad Request", "message", message));
     }

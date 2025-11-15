@@ -8,6 +8,4 @@ public interface ServicoRepositorio extends RepositorioBase<Servico> {
     List<Servico> buscarPorCategoria(String categoria);
     List<Servico> buscarPorFaixaPreco(double precoMinimo, double precoMaximo);
     List<String> listarCategorias();
-//    List<Servico> buscarPorEstabelecimento(UUID estabelecimentoId);
-//    List<Servico> buscarPorProfissional(UUID profissionalId);
 }

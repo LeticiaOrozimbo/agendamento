@@ -12,10 +12,6 @@ import java.util.Properties;
 @Configuration
 public class EmailConfig {
 
-    /**
-     * Configuração de email para ambiente de desenvolvimento
-     * Usa configurações mock para evitar erros SMTP
-     */
     @Bean
     @Profile("dev")
     public JavaMailSender javaMailSenderDev() {
@@ -23,7 +19,7 @@ public class EmailConfig {
 
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("localhost");
-        mailSender.setPort(1025); // Porta fictícia
+        mailSender.setPort(1025);
         mailSender.setUsername("");
         mailSender.setPassword("");
 
@@ -36,9 +32,6 @@ public class EmailConfig {
         return mailSender;
     }
 
-    /**
-     * Configuração de email para ambiente de produção
-     */
     @Bean
     @Profile("!dev")
     public JavaMailSender javaMailSenderProd(

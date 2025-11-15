@@ -33,32 +33,25 @@ public class ReagendarAgendamentoUseCase {
         var agendamento = agendamentoRepositorio.buscarPorId(agendamentoId)
             .orElseThrow(() -> new RegraNegocioExcecao("Agendamento não encontrado"));
 
-        // Validar conflitos no novo horário
         var conflitos = agendamentoRepositorio.buscarConflitosParaProfissional(
             agendamento.getProfissionalId(), novoInicio, novoFim
         );
 
-        // Remover o próprio agendamento da lista de conflitos
         conflitos.removeIf(c -> c.getId().equals(agendamentoId));
 
         if (!conflitos.isEmpty()) {
             throw new RegraNegocioExcecao("Conflito de agendamento no novo horário");
         }
 
-        // Aplicar regra de negócio através da entidade
         agendamento.reagendar(novoInicio, novoFim);
 
-        // Persistir alteração
         agendamentoRepositorio.salvar(agendamento);
 
         try {
-            // Atualizar calendário
             calendarioService.atualizarEvento(agendamento);
 
-            // Agendar novos lembretes
             notificacaoService.agendarLembretes(agendamento);
 
-            // Enviar notificação push
             notificacaoPushService.notificarReagendamento(agendamento);
         } catch (Exception e) {
             System.err.println("Erro ao processar reagendamento: " + e.getMessage());

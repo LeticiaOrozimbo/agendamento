@@ -65,7 +65,6 @@ public class Avaliacao {
         return new Avaliacao(UUID.randomUUID(), clienteId, null, profissionalId, estrelas, comentario);
     }
 
-    // Método antigo mantido para compatibilidade (assume estabelecimento)
     public static Avaliacao criar(UUID clienteId, int estrelas, String comentario) {
         throw new UnsupportedOperationException("Use criarParaEstabelecimento ou criarParaProfissional");
     }

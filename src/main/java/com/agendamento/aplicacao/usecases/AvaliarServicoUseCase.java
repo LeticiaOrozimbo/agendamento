@@ -24,15 +24,12 @@ public class AvaliarServicoUseCase {
     public void executar(UUID estabelecimentoId, UUID profissionalId, UUID clienteId,
                         int estrelas, String comentario) {
 
-        // Validar parâmetros
         if (estrelas < 1 || estrelas > 5) {
             throw new RegraNegocioExcecao("Avaliação deve ser entre 1 e 5 estrelas");
         }
 
-        // Criar avaliação
         var avaliacao = Avaliacao.criar(clienteId, estrelas, comentario);
 
-        // Adicionar ao estabelecimento se fornecido
         if (estabelecimentoId != null) {
             var estabelecimento = estabelecimentoRepositorio.buscarPorId(estabelecimentoId)
                 .orElseThrow(() -> new RegraNegocioExcecao("Estabelecimento não encontrado"));
@@ -41,7 +38,6 @@ public class AvaliarServicoUseCase {
             estabelecimentoRepositorio.salvar(estabelecimento);
         }
 
-        // Adicionar ao profissional se fornecido
         if (profissionalId != null) {
             var profissional = profissionalRepositorio.buscarPorId(profissionalId)
                 .orElseThrow(() -> new RegraNegocioExcecao("Profissional não encontrado"));

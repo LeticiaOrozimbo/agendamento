@@ -16,10 +16,8 @@ public class CriarProfissionalUseCase {
 
     @Transactional
     public Profissional executar(ProfissionalDTO dto) {
-        // Criar profissional com apenas o nome
         var profissional = Profissional.criar(dto.nome());
 
-        // Definir propriedades opcionais
         if (dto.especialidades() != null) {
             profissional.setEspecialidades(dto.especialidades());
         }
@@ -32,7 +30,6 @@ public class CriarProfissionalUseCase {
             profissional.definirFoto(dto.foto());
         }
 
-        // Adicionar disponibilidade se fornecida
         if (dto.disponibilidade() != null) {
             for (var disp : dto.disponibilidade()) {
                 profissional.adicionarDisponibilidade(
@@ -43,7 +40,6 @@ public class CriarProfissionalUseCase {
             }
         }
 
-        // Adicionar serviços se fornecidos
         if (dto.servicosIds() != null) {
             for (var servicoId : dto.servicosIds()) {
                 profissional.adicionarServico(servicoId);

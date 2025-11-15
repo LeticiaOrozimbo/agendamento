@@ -75,7 +75,6 @@ public class AgendamentoController {
 
     @PutMapping("/{id}/reagendar")
     public ResponseEntity<Void> reagendar(@PathVariable UUID id, @RequestBody AgendamentoDTO dto) {
-        // Assumindo duração padrão de 60 minutos para o exemplo
         var fim = dto.inicio().plus(Duration.ofMinutes(60));
         reagendarAgendamentoUseCase.executar(id, dto.inicio(), fim);
         return ResponseEntity.noContent().build();
